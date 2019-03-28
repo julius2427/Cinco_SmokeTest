@@ -1,9 +1,12 @@
-package mav.qatesting;
+package mav.cintastesting;
+
+import mav.contactform.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
 import org.apache.log4j.BasicConfigurator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -55,19 +58,29 @@ public class AppTest extends AbstractSteps
 //			//Clears the options 
 //			//Canvas_Object.clearoption(driver);
 //	    }
-	@Test
-		public void api_testing() throws Exception {
-		RestTesting.basicpingtest();
-	}
-	
-	@Test
-		public void api_testingxml() throws Exception{
-		RestTesting.basicpingtestxml();
-	}
-
-//	@After
-//		public void closeapp() {
-//			driver.quit();
-//		}
+//	@Test
+//		public void api_testing() throws Exception {
+//		RestTesting.basicpingtest();
+//	}
 //	
+//	@Test
+//		public void api_testingxml() throws Exception{
+//		RestTesting.basicpingtestxml();
+//	}
+	@Test
+		public void maincontacttest() throws Exception{
+		WebDriver driver = getDriver();
+		driver.navigate().to("https://www.cintas.com");
+		Thread.sleep(5000);
+		Contact.submitcontactform(driver);
+		
+		
+
+		
+	}
+	@After
+		public void closeapp() {
+			driver.quit();
+		}
+
 }

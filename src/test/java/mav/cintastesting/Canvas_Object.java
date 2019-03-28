@@ -1,4 +1,4 @@
-package mav.qatesting;
+package mav.cintastesting;
 
 import java.util.ArrayList;
 import java.util.List;

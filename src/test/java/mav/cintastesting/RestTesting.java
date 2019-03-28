@@ -1,8 +1,4 @@
-package mav.qatesting;
-
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+package mav.cintastesting;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
