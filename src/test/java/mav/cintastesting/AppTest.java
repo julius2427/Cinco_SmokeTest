@@ -28,7 +28,7 @@ public class AppTest extends AbstractSteps
 			getDriver();
 			GetPropertyValues.getProperties();
 			url = GetPropertyValues.getProperty("url");
-			 
+			 //small update
 		}
 	
 	 @Test
@@ -73,9 +73,15 @@ public class AppTest extends AbstractSteps
 		LocationList.searchinvalid("Invalid Search"); //invalid zip
 	
 	}
+	@Test
 	public void uniformvisualizer() {
 		
 	}
+	@Test
+	public void bestrestroom() {
+		
+	}
+	public void  
 	
 	@AfterClass
 		public static void closeapp() {
