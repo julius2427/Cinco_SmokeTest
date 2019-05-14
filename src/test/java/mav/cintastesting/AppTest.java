@@ -81,7 +81,6 @@ public class AppTest extends AbstractSteps
 	public void bestrestroom() {
 		
 	}
-	public void  
 	
 	@AfterClass
 		public static void closeapp() {
