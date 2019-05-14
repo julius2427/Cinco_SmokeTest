@@ -1,5 +1,7 @@
 package commonfunctions;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -9,7 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractSteps {
 	protected static WebDriver driver;
@@ -24,15 +28,15 @@ public class AbstractSteps {
     protected static final int VISIBLETEXT = 1;
     protected static final int VALUE = 2;
     protected static final int INDEX = 3;
-	
-	protected WebDriver getDriver() {
+	static String drivername;
+	static String driverlocation;
+	protected static WebDriver getDriver() {
 		if(driver == null) {
 			System.setProperty("webdriver.gecko.driver", "/Users/julius/Desktop/geckodriver");
 			driver = new FirefoxDriver();
 			driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 			driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
 			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
 		}
 		return driver;
 	}
@@ -114,9 +118,20 @@ public class AbstractSteps {
                 break;
             }
         } catch (NoSuchElementException e) {
-
+        	System.out.println("No element found. Add better error handling here");
         }
-   
+       
     }
-
+	public static void verifyelementid(WebDriver driver, String idelement) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(idelement)));
+		assertTrue(driver.findElement(By.id(idelement)).isDisplayed());
+	}
+	public static void verifyelementclass(WebDriver driver, String classelement) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(classelement)));
+		assertTrue(driver.findElement(By.className(classelement)).isDisplayed());
+	}
 }

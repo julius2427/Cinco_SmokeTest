@@ -2,6 +2,11 @@ package mav.contactform;
 
 import static org.junit.Assert.assertTrue;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,9 +26,20 @@ public class Contact extends AbstractSteps{
 	static String email = "test@test.com";
 	
 	
-	public static void submitcontactform(WebDriver driver) throws InterruptedException {
-		//maincontactform submission
+
+	private static String inputtime() {
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		String strDate = dateFormat.format(date);
+		return strDate;
+	}
+	public static void opendesktopcontactform() throws InterruptedException {
 		click(ID, "HeaderContactUs");
+	}
+	public static void openmobilecontactform() throws InterruptedException {
+		click(CLASS, "contact-us-mobile");
+	}
+	public static void setdesktopcontactform() throws InterruptedException {
 		textBox(ID, "InputFirstName", firstname);
 		textBox(ID, "InputLastName", lastname);
 		textBox(ID, "InputCompany", company_name);
@@ -31,21 +47,30 @@ public class Contact extends AbstractSteps{
 		textBox(ID, "InputEmail", email);
 		textBox(ID, "InputPhone", phone);
 		textBox(ID, "InputPostalCode", postalcode);
+		textBox(ID, "InputComments", inputtime());
 		click(ID, "ContactInterestOptions_0");
 		click(ID, "InputSubmitButton");
-		
-		//Need to wait for elemnt to be visible
 		WebElement element = driver.findElement(By.id("modal-deny"));
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		
-		click(ID, "modal-deny"); //Actually Submits Original Naming Sucks
-		
-		
-		verifysubmit(driver);
+		click(ID, "modal-deny"); 
 	}
-	public static void verifysubmit(WebDriver driver) {
-		assertTrue(driver.findElement(By.id("ThankYouContainer")).isDisplayed());
+	public static void setmobilecontactform() throws InterruptedException {
+		textBox(ID, "mInputFirstName", firstname);
+		textBox(ID, "mInputLastName", lastname);
+		textBox(ID, "mInputCompany", company_name);
+		textBox(ID, "mInputAddress", company_address);
+		textBox(ID, "mInputEmail", email);
+		textBox(ID, "mInputPhone", phone);
+		textBox(ID, "mInputPostalCode", postalcode);
+		textBox(ID, "mInputComments", inputtime());
+		click(ID, "mContactInterestOptions_0");
+		click(ID, "mInputSubmitButton");
+		WebElement element = driver.findElement(By.id("modal-deny"));
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		
+		click(ID, "modal-deny"); 
 	}
-	
 }
