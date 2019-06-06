@@ -24,6 +24,7 @@ public class AbstractSteps {
     protected static final int XPATH = 4;
     protected static final int CSS = 5;
     protected static final int TAGNAME = 6;
+    protected static final int NAME = 7;
 
     protected static final int VISIBLETEXT = 1;
     protected static final int VALUE = 2;
@@ -68,6 +69,9 @@ public class AbstractSteps {
             break;
         case TAGNAME:
             by = By.tagName(locatorValue);
+            break;
+        case NAME:
+            by = By.name(locatorValue);
             break;
         }
         return driver.findElement(by);
@@ -122,11 +126,30 @@ public class AbstractSteps {
         }
        
     }
-	public static void verifyelementid(WebDriver driver, String idelement) {
+	public static void verifyelementid(int byStrategy, String locatorValue) {
+
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(idelement)));
-		assertTrue(driver.findElement(By.id(idelement)).isDisplayed());
+		//verifying valid selection option. Clean this up
+		try {
+			if(byStrategy == 1 || byStrategy == 5) {
+				System.out.println("all is right");
+			}
+			else {
+				throw new InterruptedException();	
+			}
+		}catch (InterruptedException exception) {
+				System.out.println("all is bad");
+			}
+				
+						
+		if(byStrategy == 1) 
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locatorValue)));
+			
+		
+		assertTrue(chooseElement(byStrategy, locatorValue).isDisplayed());
 	}
 	public static void verifyelementclass(WebDriver driver, String classelement) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);

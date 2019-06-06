@@ -1,14 +1,11 @@
 package mav.contactform;
 
-import static org.junit.Assert.assertTrue;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,6 +21,7 @@ public class Contact extends AbstractSteps{
 	static String postalcode = "45324";
 	static String phone = "1234567890";
 	static String email = "test@test.com";
+	static String city = "testCity";
 	
 	
 
@@ -55,6 +53,13 @@ public class Contact extends AbstractSteps{
 		wait.until(ExpectedConditions.visibilityOf(element));
 		
 		click(ID, "modal-deny"); 
+		secondaryformsubmission();
+	}
+	public static void secondaryformsubmission() throws InterruptedException {
+		click(NAME, "Mats, Mops, Towels");
+		click(ID, "ThankYouFormSubmit");
+		//Verify Secondary Submission
+		verifyelementid(ID, "ThankYouContainer");
 	}
 	public static void setmobilecontactform() throws InterruptedException {
 		textBox(ID, "mInputFirstName", firstname);
@@ -72,5 +77,22 @@ public class Contact extends AbstractSteps{
 		wait.until(ExpectedConditions.visibilityOf(element));
 		
 		click(ID, "modal-deny"); 
+		secondaryformsubmission();
+	}
+	public static void uvcontactform() throws InterruptedException {
+//		WebElement testfirstname = driver.findElement(By.name("firstName"));
+//		testfirstname.sendKeys("TESTFIRSTNAME");	
+		
+		textBox(NAME, "firstName", firstname);
+		textBox(NAME, "lastName", lastname);
+		textBox(NAME, "companyName", company_name);
+		textBox(NAME, "companyAddress", company_address);
+		textBox(NAME, "city", city);
+		textBox(NAME, "zip", postalcode);
+		textBox(NAME, "email", email);
+		textBox(NAME, "phone", phone);
+		
+//		click(ID, "submitContactForm");
+//		verifyelementid(ID, "thankYou");
 	}
 }
