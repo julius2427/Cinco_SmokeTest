@@ -25,6 +25,7 @@ public class AppTest extends AbstractSteps
 	static WebDriver driver;
 
 	@BeforeClass
+		//Getting Configuration properties Setting driver
 		public static void openapp() throws Exception {
 			//Open the page
 			BasicConfigurator.configure();
@@ -36,7 +37,7 @@ public class AppTest extends AbstractSteps
 			driver.manage().window().maximize();
 			 //small update
 		}
-	
+		//US Desktop Contact Form Submission
 	  @Test
 		public void usdesktopcontactform() throws Exception{ 
 		
@@ -47,6 +48,7 @@ public class AppTest extends AbstractSteps
 		Contact.opendesktopcontactform();
 		Contact.setdesktopcontactform();	
 	}
+		//Canada Desktop Contact Form Submission
 	  @Test
 		public void cadesktopcontactform() throws Exception{ 
 		
@@ -57,6 +59,7 @@ public class AppTest extends AbstractSteps
 		Contact.opendesktopcontactform();
 		Contact.setdesktopcontactform();	
 	}
+		//Canada French Desktop Contact Form Submission
 	  @Ignore @Test
 		public void cafrdesktopcontactform() throws Exception{ 
 		
@@ -68,6 +71,8 @@ public class AppTest extends AbstractSteps
 		Contact.setdesktopcontactform();	
 	}
 	
+	//US Mobile Contact Form Submission  
+	  
 	@Test
 	public void usmobilecontactform() throws Exception{
 		//WebDriver driver = getDriver();
@@ -76,9 +81,10 @@ public class AppTest extends AbstractSteps
 		driver.navigate().to(us_url);
 		Contact.openmobilecontactform();
 		Contact.setmobilecontactform();
-//		verifyelementid(driver, "mThankYouContainer");
 		
 	}
+	
+	//Canada Mobile Contact Form Submission
 	@Test
 	public void camobilecontactform() throws Exception{
 		//WebDriver driver = getDriver();
@@ -87,9 +93,10 @@ public class AppTest extends AbstractSteps
 		driver.navigate().to(ca_url);
 		Contact.openmobilecontactform();
 		Contact.setmobilecontactform();
-//		verifyelementid(driver, "mThankYouContainer");
 		
 	}
+	
+	//Canada French Mobile Contact Form Submission
 	@Test
 	public void cafrmobilecontactform() throws Exception{
 		//WebDriver driver = getDriver();
@@ -98,10 +105,9 @@ public class AppTest extends AbstractSteps
 		driver.navigate().to(ca_fr_url);
 		Contact.openmobilecontactform();
 		Contact.setmobilecontactform();
-//		verifyelementid(driver, "mThankYouContainer");
 		
 	}
-	
+	//Location Finder Valid and Invalid Searches for US
 	@Test
 	public void uslocationfinder() throws InterruptedException {
 		//WebDriver driver = getDriver();
@@ -116,7 +122,7 @@ public class AppTest extends AbstractSteps
 		LocationList.searchinvalid("Invalid Search"); //invalid zip
 	
 	}
-	
+	//Location Finder Valid and Invalid Searches for US
 	@Test
 	public void calocationfinder() throws InterruptedException {
 		//WebDriver driver = getDriver();
